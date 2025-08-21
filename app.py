@@ -29,7 +29,6 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-
 # Header
 st.markdown("<h1>Profit Calculator</h1>", unsafe_allow_html=True)
 
