@@ -1,5 +1,4 @@
 
-
 import streamlit as st
 
 # Set page config
@@ -58,8 +57,7 @@ items = {
 
 selected_items = {}
 for item, cost in items.items():
-    selected = st.checkbox(item)
-    if selected:
+    if st.checkbox(item):
         selected_items[item] = cost
 
 # Calculate profit
