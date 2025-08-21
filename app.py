@@ -35,10 +35,13 @@ st.markdown("<h1>Profit Calculator</h1>", unsafe_allow_html=True)
 # Input section in columns for compact layout
 
 col1, col2 = st.columns([1, 1])
+
 with col1:
     cars_per_day = st.number_input("Cars per day", min_value=1, value=5)
+    
 with col2:
     markup = st.number_input("Markup %", min_value=100.0, value=100.0)
+    
 with col3:
     workshop_charge = st.number_input("Workshop supplies charge ($)", min_value=5.0, value=5.0)
 
