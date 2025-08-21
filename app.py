@@ -67,9 +67,9 @@ for item, cost in selected_items.items():
 # Add workshop supplies charge
 daily_profit += workshop_charge * cars_per_day
 
-weekly_profit = daily_profit * 7
-monthly_profit = daily_profit * 30
-annual_profit = daily_profit * 365
+weekly_profit = daily_profit * 5
+monthly_profit = daily_profit * 20
+annual_profit = daily_profit * 250
 
 # Display results
 st.markdown("### Profit Summary")
