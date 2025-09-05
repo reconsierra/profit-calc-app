@@ -16,8 +16,8 @@ st.markdown("""
             margin-top: -40px;
         }
         .block-container {
-            padding-top: 1rem;
-            padding-bottom: 1rem;
+            padding-top: 0.5rem;
+            padding-bottom: 0.5rem;
         }
         .stTextInput > div > div > input {
             background-color: #BFBFBF;
@@ -31,7 +31,7 @@ st.markdown("""
 
 
 # Header
-st.markdown("<h2>Profit Calculator</h2>", unsafe_allow_html=True)
+st.markdown("<h1>Profit Calculator</h1>", unsafe_allow_html=True)
 
 # Cars per day and Markup % on the same row
 col1, col2 = st.columns(2)
