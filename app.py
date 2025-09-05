@@ -38,7 +38,7 @@ col1, col2 = st.columns(2)
 with col1:
     cars_per_day = st.number_input("Service Cars per day", min_value=1, value=5, step=1, format="%d")
 with col2:
-    markup = st.number_input("Markup % (2 x cost)", min_value=100, value=100, step=10, format="%d")
+    markup = st.number_input("Markup % (100 = 2 x cost)", min_value=100, value=100, step=10, format="%d")
 
 # Workshop charge input
 workshop_charge = st.number_input("Workshop supplies charge ($ per vehicle)", min_value=5.00, value=5.00, step=0.50, format="%.2f")
