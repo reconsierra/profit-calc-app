@@ -13,7 +13,7 @@ st.markdown("""
         }
         h1 {
             color: #CC0000;
-            margin-top: -5px;
+            margin-top: -40px;
         }
         .block-container {
             padding-top: 1rem;
@@ -31,7 +31,7 @@ st.markdown("""
 
 
 # Header
-st.markdown("<h2>Profit Calculator</h2>", unsafe_allow_html=True)
+st.markdown("<h3>Profit Calculator</h3>", unsafe_allow_html=True)
 
 # Cars per day and Markup % on the same row
 col1, col2 = st.columns(2)
