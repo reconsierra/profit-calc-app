@@ -34,8 +34,8 @@ h1 {
         gap: 0.5rem;
     }
     .stColumn {
-        flex: 0 0 48% !important;
-        max-width: 48% !important;
+        flex: 0 0 45% !important;
+        max-width: 45% !important;
     }
 }
 </style>
