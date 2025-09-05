@@ -13,7 +13,7 @@ st.markdown("""
         }
         h1 {
             color: #CC0000;
-            margin-top: -20px;
+            margin-top: -60px;
         }
         .block-container {
             padding-top: 1rem;
