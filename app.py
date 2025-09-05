@@ -41,7 +41,7 @@ with col2:
     markup = st.number_input("Markup % (2 x cost)", min_value=100, value=100, step=10, format="%d")
 
 # Workshop charge input
-workshop_charge = st.number_input("Workshop supplies charge ($ per vehicle)", min_value=5.0, value=5.0, step=0.5, format="%.2f")
+workshop_charge = st.number_input("Workshop supplies charge ($ per vehicle)", min_value=5.00, value=5.00, step=0.50, format="%.2f")
 
 # Fixed cost items
 st.markdown("### Select Chargeable Items")
