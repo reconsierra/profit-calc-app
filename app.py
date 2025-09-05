@@ -4,7 +4,7 @@ import streamlit as st
 # Set page config
 st.set_page_config(page_title="Profit Calculator", layout="wide")
 
-# Apply custom CSS for Calibri font and responsive layout
+# Apply custom CSS for Calibri font and mobile-first two-column layout
 st.markdown("""
 <style>
 html, body, [class*="css"]  {
@@ -28,16 +28,21 @@ h1 {
 }
 /* Force two-column layout on small screens */
 @media screen and (max-width: 480px) {
+    section.main > div > div > div > div {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
     .stColumn {
-        flex: 0 0 50% !important;
-        max-width: 50% !important;
+        flex: 0 0 48% !important;
+        max-width: 48% !important;
     }
 }
 </style>
 """, unsafe_allow_html=True)
 
 # Header
-st.markdown("## Profit Calculator")
+st.markdown("<h1>Profit Calculator</h1>", unsafe_allow_html=True)
 
 # Cars per day and Markup % on the same row
 col1, col2 = st.columns(2)
@@ -46,7 +51,7 @@ with col1:
 with col2:
     markup = st.number_input("Markup %", min_value=0, value=100, step=1, format="%d")
 
-# Workshop charge input below
+# Workshop charge input
 workshop_charge = st.number_input("Workshop supplies charge ($)", min_value=0.0, value=5.0, step=0.5, format="%.2f")
 
 # Fixed cost items
