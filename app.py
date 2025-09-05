@@ -4,44 +4,52 @@ import streamlit as st
 # Set page config
 st.set_page_config(page_title="Profit Calculator", layout="wide")
 
-# Apply custom CSS for Calibri font and layout adjustments
+# Apply custom CSS for mobile responsiveness and spacing
 st.markdown("""
-    <style>
-        html, body, [class*="css"]  {
-            font-family: 'Calibri', sans-serif;
-            background-color: #FFFFFF;
-        }
-        h1 {
-            color: #CC0000;
-            margin-top: -60px;
-        }
-        .block-container {
-            padding-top: 1rem;
-            padding-bottom: 1rem;
-        }
-        .stTextInput > div > div > input {
-            background-color: #BFBFBF;
-            color: #000000;
-        }
-        .stCheckbox > label {
-            color: #737373;
-        }
-    </style>
+<style>
+html, body, [class*="css"]  {
+    font-family: 'Calibri', sans-serif;
+    background-color: #FFFFFF;
+}
+h1 {
+    color: #CC0000;
+    margin-top: -40px;
+}
+.block-container {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+.stTextInput > div > div > input {
+    background-color: #BFBFBF;
+    color: #000000;
+}
+.stCheckbox > label {
+    color: #737373;
+}
+/* Responsive layout for small screens */
+@media screen and (max-width: 480px) {
+    .stNumberInput {
+        margin-bottom: 0.25rem;
+    }
+    .stColumn {
+        flex: 1 1 33% !important;
+        max-width: 33% !important;
+    }
+}
+</style>
 """, unsafe_allow_html=True)
-
 
 # Header
 st.markdown("<h1>Profit Calculator</h1>", unsafe_allow_html=True)
 
-# Cars per day and Markup % on the same row
-col1, col2 = st.columns(2)
+# Cars per day, Markup %, and Workshop supplies charge on the same row
+col1, col2, col3 = st.columns(3)
 with col1:
-    cars_per_day = st.number_input("Service Cars per day", min_value=1, value=5, step=1, format="%d")
+    cars_per_day = st.number_input("Cars per day", min_value=1, value=5, step=1, format="%d")
 with col2:
-    markup = st.number_input("Markup % (100 = 2 x cost)", min_value=100, value=100, step=10, format="%d")
-
-# Workshop charge input
-workshop_charge = st.number_input("Workshop supplies charge ($ per vehicle)", min_value=5.00, value=5.00, step=0.50, format="%.2f")
+    markup = st.number_input("Markup %", min_value=100, value=100, step=1, format="%d")
+with col3:
+    workshop_charge = st.number_input("Workshop supplies charge ($)", min_value=5.0, value=5.0, step=0.5, format="%.2f")
 
 # Fixed cost items
 st.markdown("### Select Chargeable Items")
