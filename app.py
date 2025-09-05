@@ -26,10 +26,10 @@ h1 {
 .stCheckbox > label {
     color: #737373;
 }
-/* Responsive layout for small screens */
+/* Force two-column layout on small screens */
 @media screen and (max-width: 480px) {
     .stColumn {
-        flex: 1 1 50% !important;
+        flex: 0 0 50% !important;
         max-width: 50% !important;
     }
 }
@@ -37,7 +37,7 @@ h1 {
 """, unsafe_allow_html=True)
 
 # Header
-st.markdown("<h1>Profit Calculator</h1>", unsafe_allow_html=True)
+st.markdown("## Profit Calculator")
 
 # Cars per day and Markup % on the same row
 col1, col2 = st.columns(2)
@@ -46,7 +46,7 @@ with col1:
 with col2:
     markup = st.number_input("Markup %", min_value=0, value=100, step=1, format="%d")
 
-# Workshop charge input below the two columns
+# Workshop charge input below
 workshop_charge = st.number_input("Workshop supplies charge ($)", min_value=0.0, value=5.0, step=0.5, format="%.2f")
 
 # Fixed cost items
