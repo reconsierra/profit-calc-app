@@ -75,6 +75,6 @@ annual_profit = daily_profit * 250
 # Display results
 st.markdown("### Profit Summary")
 st.write(f"**Daily Profit:** ${daily_profit:.2f}")
-st.write(f"**Weekly Profit:** ${weekly_profit:.2f}")
+#st.write(f"**Weekly Profit:** ${weekly_profit:.2f}")
 st.write(f"**Monthly Profit:** ${monthly_profit:.2f}")
 st.write(f"**Annual Profit:** ${annual_profit:.2f}")
