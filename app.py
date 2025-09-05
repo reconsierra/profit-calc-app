@@ -38,10 +38,10 @@ col1, col2 = st.columns(2)
 with col1:
     cars_per_day = st.number_input("Cars per day", min_value=1, value=5, step=1, format="%d")
 with col2:
-    markup = st.number_input("Markup %", min_value=0, value=100, step=10, format="%d")
+    markup = st.number_input("Markup %", min_value=100, value=100, step=10, format="%d")
 
 # Workshop charge input
-workshop_charge = st.number_input("Workshop supplies charge ($)", min_value=0.0, value=5.0, step=0.5, format="%.2f")
+workshop_charge = st.number_input("Workshop supplies charge ($)", min_value=5.0, value=5.0, step=0.5, format="%.2f")
 
 # Fixed cost items
 st.markdown("### Select Chargeable Items")
