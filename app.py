@@ -4,66 +4,55 @@ import streamlit as st
 # Set page config
 st.set_page_config(page_title="Profit Calculator", layout="wide")
 
-# Apply custom CSS for Calibri font and mobile-friendly layout
+# Apply custom CSS for Calibri font and layout adjustments
 st.markdown("""
-<style>
-html, body, [class*="css"]  {
-    font-family: 'Calibri', sans-serif;
-    background-color: #FFFFFF;
-}
-h1 {
-    color: #CC0000;
-    margin-top: -40px;
-}
-.block-container {
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-}
-.stTextInput > div > div > input {
-    background-color: #BFBFBF;
-    color: #000000;
-}
-.stCheckbox > label {
-    color: #737373;
-}
-/* Force two-column layout on small screens */
-@media screen and (max-width: 480px) {
-    .stApp .stColumns {
-        display: flex !important;
-        flex-direction: row !important;
-        flex-wrap: wrap !important;
-        gap: 0.5rem !important;
-    }
-    .stApp .stColumn {
-        flex: 0 0 48% !important;
-        max-width: 48% !important;
-    }
-}
-</style>
+    <style>
+        html, body, [class*="css"]  {
+            font-family: 'Calibri', sans-serif;
+            background-color: #FFFFFF;
+        }
+        h1 {
+            color: #CC0000;
+            margin-top: -40px;
+        }
+        .block-container {
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+        }
+        .stTextInput > div > div > input {
+            background-color: #BFBFBF;
+            color: #000000;
+        }
+        .stCheckbox > label {
+            color: #737373;
+        }
+    </style>
 """, unsafe_allow_html=True)
 
+
 # Header
-st.markdown("## Profit Calculator")
+st.markdown("<h1>Profit Calculator</h1>", unsafe_allow_html=True)
 
 # Cars per day and Markup % on the same row
 col1, col2 = st.columns(2)
 with col1:
-    cars_per_day = st.number_input("Cars per day", min_value=1, value=5, step=1, format="%d")
+    cars_per_day = st.number_input("Service Cars per day", min_value=1, value=5, step=1, format="%d")
 with col2:
-    markup = st.number_input("Markup %", min_value=0, value=100, step=1, format="%d")
+    markup = st.number_input("Markup % (100 = 2 x cost)", min_value=100, value=100, step=10, format="%d")
 
 # Workshop charge input
-workshop_charge = st.number_input("Workshop supplies charge ($)", min_value=0.0, value=5.0, step=0.5, format="%.2f")
+workshop_charge = st.number_input("Workshop supplies charge ($ per vehicle)", min_value=5.00, value=5.00, step=0.50, format="%.2f")
 
 # Fixed cost items
 st.markdown("### Select Chargeable Items")
 items = {
-    "Wiper Blade Euro (x2)": 30.00,
     "Sump plug washer": 0.45,
     "Washer additive": 1.95,
+    "Wiper Blade Metal (x2)": 19.96,
+    "Wiper Flat Blade Euro (x2)": 30.00,
     "Engine flush 250 ml": 6.95,
-    "Fuel additive 250 ml": 6.95,
-    # "Diesel biocide treatment 250 ml": 8.95
+    "Petrol/Diesel fuel additive 250 ml": 6.95,
+    #"Diesel biocide treatment 250 ml": 8.95
 }
 
 selected_items = {}
@@ -86,7 +75,7 @@ annual_profit = daily_profit * 250
 
 # Display results
 st.markdown("### Profit Summary")
-st.write(f"**Daily Profit:** ${daily_profit:.2f}")
+#st.write(f"**Daily Profit:** ${daily_profit:.2f}")
 st.write(f"**Weekly Profit:** ${weekly_profit:.2f}")
 st.write(f"**Monthly Profit:** ${monthly_profit:.2f}")
 st.write(f"**Annual Profit:** ${annual_profit:.2f}")
