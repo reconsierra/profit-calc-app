@@ -4,31 +4,37 @@ import streamlit as st
 # Set page config
 st.set_page_config(page_title="Profit Calculator", layout="wide")
 
-# Apply custom CSS for Calibri font and layout adjustments
+# Apply custom CSS for Calibri font and responsive layout
 st.markdown("""
-    <style>
-        html, body, [class*="css"]  {
-            font-family: 'Calibri', sans-serif;
-            background-color: #FFFFFF;
-        }
-        h1 {
-            color: #CC0000;
-            margin-top: -40px;
-        }
-        .block-container {
-            padding-top: 1rem;
-            padding-bottom: 1rem;
-        }
-        .stTextInput > div > div > input {
-            background-color: #BFBFBF;
-            color: #000000;
-        }
-        .stCheckbox > label {
-            color: #737373;
-        }
-    </style>
+<style>
+html, body, [class*="css"]  {
+    font-family: 'Calibri', sans-serif;
+    background-color: #FFFFFF;
+}
+h1 {
+    color: #CC0000;
+    margin-top: -40px;
+}
+.block-container {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+.stTextInput > div > div > input {
+    background-color: #BFBFBF;
+    color: #000000;
+}
+.stCheckbox > label {
+    color: #737373;
+}
+/* Responsive layout for small screens */
+@media screen and (max-width: 480px) {
+    .stColumn {
+        flex: 1 1 50% !important;
+        max-width: 50% !important;
+    }
+}
+</style>
 """, unsafe_allow_html=True)
-
 
 # Header
 st.markdown("<h1>Profit Calculator</h1>", unsafe_allow_html=True)
@@ -36,12 +42,12 @@ st.markdown("<h1>Profit Calculator</h1>", unsafe_allow_html=True)
 # Cars per day and Markup % on the same row
 col1, col2 = st.columns(2)
 with col1:
-    cars_per_day = st.number_input("Cars per day", min_value=1, value=5)
+    cars_per_day = st.number_input("Cars per day", min_value=1, value=5, step=1, format="%d")
 with col2:
-    markup = st.number_input("Markup %", min_value=100.0, value=100.0)
+    markup = st.number_input("Markup %", min_value=0, value=100, step=1, format="%d")
 
-# Workshop charge input
-workshop_charge = st.number_input("Workshop supplies charge ($)", min_value=5.0, value=5.0)
+# Workshop charge input below the two columns
+workshop_charge = st.number_input("Workshop supplies charge ($)", min_value=0.0, value=5.0, step=0.5, format="%.2f")
 
 # Fixed cost items
 st.markdown("### Select Chargeable Items")
@@ -51,7 +57,7 @@ items = {
     "Washer additive": 1.95,
     "Engine flush 250 ml": 6.95,
     "Fuel additive 250 ml": 6.95,
-  #  "Diesel biocide treatment 250 ml": 8.95
+    # "Diesel biocide treatment 250 ml": 8.95
 }
 
 selected_items = {}
