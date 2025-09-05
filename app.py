@@ -4,7 +4,7 @@ import streamlit as st
 # Set page config
 st.set_page_config(page_title="Profit Calculator", layout="wide")
 
-# Apply custom CSS for Calibri font and mobile-first two-column layout
+# Apply custom CSS for Calibri font and mobile-friendly layout
 st.markdown("""
 <style>
 html, body, [class*="css"]  {
@@ -28,21 +28,22 @@ h1 {
 }
 /* Force two-column layout on small screens */
 @media screen and (max-width: 480px) {
-    section.main > div > div > div > div {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.5rem;
+    .stApp .stColumns {
+        display: flex !important;
+        flex-direction: row !important;
+        flex-wrap: wrap !important;
+        gap: 0.5rem !important;
     }
-    .stColumn {
-        flex: 0 0 45% !important;
-        max-width: 45% !important;
+    .stApp .stColumn {
+        flex: 0 0 48% !important;
+        max-width: 48% !important;
     }
 }
 </style>
 """, unsafe_allow_html=True)
 
 # Header
-st.markdown("<h1>Profit Calculator</h1>", unsafe_allow_html=True)
+st.markdown("## Profit Calculator")
 
 # Cars per day and Markup % on the same row
 col1, col2 = st.columns(2)
