@@ -52,7 +52,7 @@ items = {
     "Wiper Flat Blade Euro (x2)": 30.00,
     "Engine flush 250 ml": 6.95,
     "Fuel additive 250 ml": 6.95,
-    "Diesel biocide treatment 250 ml": 8.95
+    #"Diesel biocide treatment 250 ml": 8.95
 }
 
 selected_items = {}
