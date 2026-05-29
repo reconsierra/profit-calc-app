@@ -53,6 +53,7 @@ items = {
     "Engine flush 250 ml": 6.95,
     "Petrol fuel additive 250 ml": 6.95,
     "Diesel biocide treatment 250 ml": 8.95,
+    "Brake paste sachet x 2:" 12.00,
 }
 
 selected_items = {}
