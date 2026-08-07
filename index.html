@@ -4,7 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Customer Profit Calculator</title>
-<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/x-icon" href="./favicon.ico?v=2" sizes="any">
+<link rel="shortcut icon" type="image/x-icon" href="./favicon.ico?v=2">
 <style>
   :root{--red:#cc0000;--red-dark:#9f0000;--ink:#171719;--slate:#4d5057;--muted:#747780;--line:#d9dadd;--wash:#f5f5f6;--paper:#fff;--input:#f0f1f2;--focus:#005fcc;--success:#166534;--radius:12px}
   *{box-sizing:border-box} html{background:#ececee} body{margin:0;color:var(--ink);font-family:Arial,Helvetica,sans-serif;background:#ececee;-webkit-text-size-adjust:100%}
@@ -24,7 +25,7 @@
   .items-panel{border-top:1px solid var(--line);margin-top:22px;padding-top:21px}.items{display:grid;gap:8px}.item{display:grid;grid-template-columns:minmax(205px,1fr) auto;align-items:center;gap:12px;padding:8px 0;border-bottom:1px solid #efeff0}.item-label{display:flex;align-items:center;gap:9px;font-size:.94rem;color:#30333a;cursor:pointer}.rate{display:flex;align-items:center;gap:5px;color:var(--muted);font-size:.78rem;white-space:nowrap}.rate .num{width:55px;padding:6px;text-align:center;font-size:.86rem}.rate .stepper button{width:22px;min-height:14px}.rate.disabled{opacity:.5}
   .outcome{position:sticky;top:16px;border:1px solid var(--line);border-top:5px solid var(--red);background:#fff;padding:22px;border-radius:var(--radius);box-shadow:0 12px 28px rgba(30,30,33,.07)}.outcome h3{margin-bottom:5px}.outcome-sub{margin:0 0 19px;color:var(--muted);font-size:.88rem;line-height:1.4}.outcome-sub strong{color:var(--slate)}
   .empty{background:var(--wash);border-left:4px solid #b8bbc1;padding:13px 14px;margin-bottom:13px;color:var(--slate);font-size:.89rem;line-height:1.45}.empty strong{color:var(--ink)}
-  .result{border-radius:9px;padding:17px 17px 16px;margin:10px 0}.result.turnover{background:#f0f1f2}.result.profit{background:linear-gradient(125deg,#1e8a4a,#126337);color:#fff}.result-label{margin:0 0 6px;text-transform:uppercase;letter-spacing:.075em;font-size:.72rem;font-weight:800}.turnover .result-label{color:#676b73}.profit .result-label{color:#d9f8e4}.figure{font-size:clamp(2rem,4.2vw,2.85rem);font-weight:800;letter-spacing:-.05em;line-height:1.02;margin:0}.turnover .figure{color:#21242a}.result-note{font-size:.76rem;line-height:1.4;margin:8px 0 0}.turnover .result-note{color:#646870}.profit .result-note{color:#ddf7e7}
+  .result{border-radius:9px;padding:17px 17px 16px;margin:10px 0}.result.turnover{background:#f0f1f2}.result.profit{background:linear-gradient(125deg,#1e8a4a,#126337);color:#fff}.result-label{margin:0 0 6px;text-transform:uppercase;letter-spacing:.075em;font-size:.72rem;font-weight:800}.turnover .result-label{color:#676b73}.profit .result-label{color:#d9f8e4}.figure{font-size:clamp(2rem,4.2vw,2.85rem);font-weight:800;letter-spacing:-.05em;line-height:1.02;margin:0;transform-origin:left center}.figure.is-rolling{animation:figure-spin .68s cubic-bezier(.16,.78,.26,1)}@keyframes figure-spin{0%{opacity:.46;transform:translateY(-10px) scaleY(.93)}25%{opacity:1;transform:translateY(5px) scaleY(1.04)}55%{transform:translateY(-3px) scaleY(.98)}100%{transform:translateY(0) scaleY(1)}}.turnover .figure{color:#21242a}.result-note{font-size:.76rem;line-height:1.4;margin:8px 0 0}.turnover .result-note{color:#646870}.profit .result-note{color:#ddf7e7}
   .assumption{border-top:1px solid var(--line);margin-top:18px;padding-top:16px;color:var(--slate);font-size:.82rem;line-height:1.48}.assumption strong{color:var(--ink)}
   .actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:18px}.button{border:1px solid transparent;border-radius:6px;padding:10px 13px;min-height:42px;font:inherit;font-size:.88rem;font-weight:700;cursor:pointer}.button.primary{background:var(--red);color:#fff}.button.primary:hover{background:var(--red-dark)}.button.copy{background:#263a52;color:#fff}.button.copy:hover{background:#1c2b3d}.button.secondary{background:#fff;color:#33363d;border-color:#bbbfc5}.button.secondary:hover{background:#f2f3f4}.button.tertiary{background:transparent;color:#4b4e55;text-decoration:underline;padding-left:3px;padding-right:3px}
   details{border-top:1px solid var(--line);margin-top:28px;padding-top:17px}summary{cursor:pointer;color:var(--red);font-weight:800;font-size:.92rem}details div{max-width:760px;color:var(--slate);font-size:.9rem;line-height:1.5;padding-top:10px}details ul{padding-left:20px;margin:8px 0}details strong{color:var(--ink)}
@@ -32,7 +33,7 @@
   .toast{position:fixed;left:50%;bottom:22px;transform:translate(-50%,120px);background:#202329;color:#fff;padding:11px 15px;border-radius:7px;font-size:.88rem;box-shadow:0 8px 30px rgba(0,0,0,.2);transition:transform .2s ease;z-index:20}.toast.show{transform:translate(-50%,0)}
   @media print{body,html{background:#fff}.shell{max-width:none;padding:24px}.actions,details,.validation,.stepper{display:none!important}.flow{grid-template-columns:1fr 360px;gap:24px}.outcome{position:static;box-shadow:none}.num{border:0;background:transparent;padding:0;font-weight:700}.items-panel{margin-top:12px}.item{padding:4px 0}.check{appearance:none;border:1px solid #777;border-radius:2px;width:13px;height:13px}.check:checked{background:#333}.utility{display:none}}
   @media(max-width:760px){.shell{padding:25px 18px 32px}.topbar{display:block}.utility{text-align:left;margin-top:10px;max-width:none}.flow{display:block}.outcome{position:static;margin-top:24px}.settings{grid-template-columns:1fr;gap:14px}.item{grid-template-columns:1fr;gap:6px}.rate{margin-left:27px}.button{flex:1}.dialog-actions .button{flex:initial}}
-  @media(prefers-reduced-motion:reduce){.toast{transition:none}}
+  @media(prefers-reduced-motion:reduce){.toast{transition:none}.figure.is-rolling{animation:none}}
 </style>
 </head>
 <body>
@@ -111,6 +112,25 @@ const items=[
 const $=id=>document.getElementById(id);
 const itemList=$('items');
 const aud=value=>value.toLocaleString('en-AU',{style:'currency',currency:'AUD'});
+const reducedMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+function animateFigure(id,target){
+  const element=$(id);
+  const start=Number(element.dataset.amount||0);
+  if(element._animation)cancelAnimationFrame(element._animation);
+  if(reducedMotion||start===target){element.textContent=aud(target);element.dataset.amount=target;return;}
+  const duration=680;
+  const startedAt=performance.now();
+  element.classList.remove('is-rolling');
+  void element.offsetWidth;
+  element.classList.add('is-rolling');
+  function tick(now){
+    const progress=Math.min((now-startedAt)/duration,1);
+    const eased=1-Math.pow(1-progress,4);
+    element.textContent=aud(start+(target-start)*eased);
+    if(progress<1){element._animation=requestAnimationFrame(tick);}else{element.textContent=aud(target);element.dataset.amount=target;element.classList.remove('is-rolling');}
+  }
+  element._animation=requestAnimationFrame(tick);
+}
 const raw=id=>parseFloat($(id).value);
 function safeValue(id){const input=$(id),min=Number(input.min),max=Number(input.max),value=raw(id);if(!Number.isFinite(value))return null;return Math.max(min,Math.min(max,value));}
 function normaliseInput(id){const input=$(id),value=safeValue(id);if(value===null)return false;input.value=(id==='workshop'?value.toFixed(2):String(value));return true;}
@@ -140,7 +160,7 @@ function calculate(){
     dailyProfit+=margin*affectedCars;dailyTurnover+=(item.cost+margin)*affectedCars;
   });
   if($('workshopEnabled').checked){selectedCount++;const charge=safeValue('workshop');dailyTurnover+=charge*cars;dailyProfit+=charge*cars;}
-  $('validation').textContent=''; $('turnover').textContent=aud(dailyTurnover*250); $('profit').textContent=aud(dailyProfit*250);
+  $('validation').textContent=''; animateFigure('turnover',dailyTurnover*250); animateFigure('profit',dailyProfit*250);
 }
 function setWorkshopState(){const on=$('workshopEnabled').checked;$('workshop').disabled=!on;document.querySelectorAll('button[data-step="workshop"]').forEach(button=>button.disabled=!on);calculate();}
 function selectedSummary(){
