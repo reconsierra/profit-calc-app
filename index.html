@@ -88,8 +88,7 @@
       <div class="result profit"><p class="result-label">Customer profit potential</p><p class="figure" id="profit" aria-live="polite">$0.00</p><p class="result-note">Product margin plus enabled workshop supplies charge recovery.</p></div>
       <div class="assumption"><strong>NOTE:</strong> This is not total workshop net profit. It excludes labour, rent, wages, merchant fees and other operating costs.</div>
       <div class="actions">
-        <button type="button" class="button copy" id="share">Copy customer summary</button>
-        <button type="button" class="button secondary" id="print">Print summary</button>
+        <button type="button" class="button copy" id="email">Email summary to customer</button>
         <button type="button" class="button tertiary" id="reset">Reset to defaults</button>
       </div>
     </aside>
@@ -143,16 +142,18 @@ function calculate(){
   if($('workshopEnabled').checked){selectedCount++;const charge=safeValue('workshop');dailyTurnover+=charge*cars;dailyProfit+=charge*cars;}
   $('validation').textContent=''; $('turnover').textContent=aud(dailyTurnover*250); $('profit').textContent=aud(dailyProfit*250);
 }
-function setWorkshopState(){const on=$('workshopEnabled').checked;$('workshop').disabled=!on;document.querySelectorAll('[data-step="workshop"] button').forEach(button=>button.disabled=!on);calculate();}
+function setWorkshopState(){const on=$('workshopEnabled').checked;$('workshop').disabled=!on;document.querySelectorAll('button[data-step="workshop"]').forEach(button=>button.disabled=!on);calculate();}
 function selectedSummary(){
   const chosen=items.map((item,index)=>{if(!$(`item-${index}`).checked)return null;const rate=item.rate===undefined?null:safeValue(`rate-${index}`);return rate===null?item.name:`${item.name} (${itemMarkupText(item,rate)})`;}).filter(Boolean);
   if($('workshopEnabled').checked)chosen.push(`Workshop supplies charge (${aud(safeValue('workshop'))} per vehicle)`);
   return chosen;
 }
-async function copySummary(){
+function emailSummary(){
   const chosen=selectedSummary();
-  const text=`Customer Profit Calculator\n\nAssumptions\n- Service cars per day: ${safeValue('cars')}\n- Markup: ${safeValue('markup')}%\n- Working days used: 250\n\nSelected items\n${chosen.length?chosen.map(item=>`- ${item}`).join('\n'):'- No items selected'}\n\nEstimated annual turnover: ${$('turnover').textContent}\nCustomer profit potential: ${$('profit').textContent}\n\nImportant: This is an indicative estimate only. It excludes labour, rent, wages, merchant fees and other operating costs.`;
-  try{await navigator.clipboard.writeText(text);showToast('Customer summary copied.');}catch(error){showToast('Copy was unavailable. Use Print summary instead.');}
+  const selectedItems=chosen.length?chosen.map(item=>`- ${item}`).join('\n'):'- No items selected';
+  const body=`Hi,\n\nThanks for taking the time for a quick chat about how the small things you already buy from Wurth — washers, wiper blades, additives and the like — can add up to real profit.\n\nHere's your indicative summary from the Customer Profit Calculator, based on what we discussed.\n\nWorkshop assumptions\n- Service cars per day: ${safeValue('cars')}\n- Markup of items: ${safeValue('markup')}%\n- Working days per year: 250\n\nSelected items\n${selectedItems}\n\nWorkshop turnover potential: ${$('turnover').textContent}\nCustomer profit potential: ${$('profit').textContent}\n\nThe profit potential shown here is based on our standard industry selling price — actual results will vary depending on how far you want to push profitability in your own business. We'd welcome the chance to talk through other items from our range that could sit well on your customer invoices and add even more to your ongoing growth.\n\nNote: This is an indicative estimate only. It excludes labour, rent, wages, merchant fees and other operating costs.\n\nKind regards,\nYour Partner in Profit`;
+  const subject='Wurth Customer profit potential';
+  window.location.href=`mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 }
 let toastTimer;function showToast(message){$('toast').textContent=message;$('toast').classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>$('toast').classList.remove('show'),3200);}
 function resetScenario(){
@@ -163,7 +164,7 @@ buildItems();
 document.querySelectorAll('[data-step]').forEach(button=>button.addEventListener('click',()=>stepInput(button.dataset.step,Number(button.dataset.change))));
 ['cars','markup','workshop'].forEach(id=>$(id).addEventListener('input',calculate));
 $('workshopEnabled').addEventListener('change',setWorkshopState);
-$('share').addEventListener('click',copySummary);$('print').addEventListener('click',()=>window.print());
+$('email').addEventListener('click',emailSummary);
 $('reset').addEventListener('click',()=>$('resetDialog').showModal());$('cancelReset').addEventListener('click',()=>$('resetDialog').close());$('confirmReset').addEventListener('click',()=>{$('resetDialog').close();resetScenario();});
 setWorkshopState();calculate();
 </script>
